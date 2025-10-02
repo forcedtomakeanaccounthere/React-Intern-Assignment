@@ -40,7 +40,6 @@ export default function ArtworkTable() {
   
   // Track selected and deselected IDs across pages
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
-  const [deselectedIds, setDeselectedIds] = useState<Set<number>>(new Set());
   
   const overlayPanelRef = useRef<OverlayPanel>(null);
 
@@ -64,9 +63,9 @@ export default function ArtworkTable() {
       setArtworks(formattedData);
       setTotalRecords(data.pagination.total);
       
-      // Restore selections for current page based on selectedIds and deselectedIds
+      // Restore selections for current page based on selectedIds
       const currentPageSelections = formattedData.filter(artwork => 
-        selectedIds.has(artwork.id) && !deselectedIds.has(artwork.id)
+        selectedIds.has(artwork.id)
       );
       setSelectedArtworks(currentPageSelections);
     } catch (error) {
@@ -90,31 +89,22 @@ export default function ArtworkTable() {
     const newSelection = e.value as Artwork[];
     setSelectedArtworks(newSelection);
     
-    // Update selectedIds and deselectedIds
+    // Update selectedIds - simply track what's selected
     const newSelectedIds = new Set(selectedIds);
-    const newDeselectedIds = new Set(deselectedIds);
-    
-    const currentPageIds = new Set(artworks.map(a => a.id));
     const newSelectionIds = new Set(newSelection.map(a => a.id));
     
-    // For each row in current page
+    // For each row in current page, update selection status
     artworks.forEach(artwork => {
       if (newSelectionIds.has(artwork.id)) {
         // Row is selected
         newSelectedIds.add(artwork.id);
-        newDeselectedIds.delete(artwork.id);
       } else {
         // Row is not selected
-        if (selectedIds.has(artwork.id)) {
-          // Was previously selected, now deselected
-          newDeselectedIds.add(artwork.id);
-        }
         newSelectedIds.delete(artwork.id);
       }
     });
     
     setSelectedIds(newSelectedIds);
-    setDeselectedIds(newDeselectedIds);
   };
 
   // Handle overlay panel submit
@@ -125,7 +115,6 @@ export default function ArtworkTable() {
     setLoading(true);
     
     const newSelectedIds = new Set(selectedIds);
-    const newDeselectedIds = new Set(deselectedIds);
     let remainingRows = rowsToSelect;
     let page = currentPage;
     
@@ -139,7 +128,6 @@ export default function ArtworkTable() {
         for (let i = 0; i < rowsToSelectInPage; i++) {
           const id = data.data[i].id;
           newSelectedIds.add(id);
-          newDeselectedIds.delete(id);
         }
         
         remainingRows -= rowsToSelectInPage;
@@ -147,11 +135,10 @@ export default function ArtworkTable() {
       }
       
       setSelectedIds(newSelectedIds);
-      setDeselectedIds(newDeselectedIds);
       
       // Update current page selections
       const currentPageSelections = artworks.filter(artwork => 
-        newSelectedIds.has(artwork.id) && !newDeselectedIds.has(artwork.id)
+        newSelectedIds.has(artwork.id)
       );
       setSelectedArtworks(currentPageSelections);
     } catch (error) {
@@ -166,7 +153,7 @@ export default function ArtworkTable() {
   const header = (
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
       <span style={{ fontSize: '14px', fontWeight: 'bold' }}>
-        {selectedIds.size - deselectedIds.size} selected
+        {selectedIds.size} selected
       </span>
       <Button
         icon="pi pi-chevron-down"
@@ -203,7 +190,8 @@ export default function ArtworkTable() {
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center', 
-            minHeight: '400px' 
+            minHeight: '400px',
+            width: '100%'
           }}>
             <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
           </div>
