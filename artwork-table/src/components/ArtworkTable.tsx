@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
+import { OverlayPanel } from 'primereact/overlaypanel';
+import { InputNumber } from 'primereact/inputnumber';
 import { fetchArtworks, fetchArtworksForSelection } from '../services/artworkService';
 import type { Artwork } from '../types/artwork';
 import { useSelectionManager } from '../hooks/useSelectionManager';
@@ -12,6 +15,8 @@ export default function ArtworkTable() {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
+  const [rowsToSelect, setRowsToSelect] = useState<number | null>(null);
+  const overlayPanelRef = useRef<OverlayPanel>(null);
   const rowsPerPage = 12;
 
   const {
@@ -79,12 +84,55 @@ export default function ArtworkTable() {
     }
   };
 
-  const header = (
-    <SelectionHeader 
-      selectionCount={selectionCount} 
-      onSelectRows={handleSelectRows} 
-    />
+  const handleSubmit = () => {
+    if (rowsToSelect && rowsToSelect > 0) {
+      handleSelectRows(rowsToSelect);
+      overlayPanelRef.current?.hide();
+      setRowsToSelect(null);
+    }
+  };
+
+  const titleHeader = () => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <Button
+        icon="pi pi-chevron-down"
+        className="p-button-text p-button-sm"
+        onClick={(e) => overlayPanelRef.current?.toggle(e)}
+        style={{ 
+          minWidth: 'auto', 
+          padding: '2px -1px',
+          backgroundColor: '#e21515ff',
+          color: '#fff',
+          border: 'none'
+        }}
+      />
+      <span>Title</span>
+      <OverlayPanel ref={overlayPanelRef}>
+        <div style={{ 
+          padding: '12px', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: '12px' 
+        }}>
+          <label htmlFor="rows-input">Select rows:</label>
+          <InputNumber
+            id="rows-input"
+            value={rowsToSelect}
+            onValueChange={(e) => setRowsToSelect(e.value ?? null)}
+            placeholder="Number of rows"
+            min={1}
+          />
+          <Button
+            label="Submit"
+            onClick={handleSubmit}
+            disabled={!rowsToSelect || rowsToSelect <= 0}
+          />
+        </div>
+      </OverlayPanel>
+    </div>
   );
+
+  const header = <SelectionHeader selectionCount={selectionCount} />;
 
   if (loading) {
     return <LoadingSpinner />;
@@ -111,7 +159,7 @@ export default function ArtworkTable() {
           selectionMode="multiple"
           headerStyle={{ width: '3rem' }}
         />
-        <Column field="title" header="Title" style={{ width: '20%' }} />
+        <Column field="title" header={titleHeader} style={{ width: '20%' }} />
         <Column field="place_of_origin" header="Place of Origin" style={{ width: '15%' }} />
         <Column field="artist_display" header="Artist" style={{ width: '25%' }} />
         <Column field="inscriptions" header="Inscriptions" style={{ width: '20%' }} />
