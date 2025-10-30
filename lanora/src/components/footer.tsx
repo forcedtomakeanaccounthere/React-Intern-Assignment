@@ -7,13 +7,11 @@ export function Footer() {
   return (
     <footer className="bg-card border-t border-border transition-theme">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Company Info */}
-          <div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+          {/* Company Info - Full width on mobile */}
+          <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-white font-bold">
-                L
-              </div>
+              <img src="/lanora.png" alt="Lanora Logo" className="w-7 h-8" />
               <span className="font-bold text-lg text-foreground">Lanora</span>
             </div>
             <p className="text-muted-foreground text-sm">
@@ -21,8 +19,8 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
+          {/* Quick Links - Side by side on mobile, separate on desktop */}
+          <div className="col-span-1">
             <h3 className="font-semibold text-foreground mb-4">Quick Links</h3>
             <ul className="space-y-2">
               {[
@@ -41,7 +39,7 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div>
+          <div className="col-span-1">
             <h3 className="font-semibold text-foreground mb-4">Services</h3>
             <ul className="space-y-2">
               {["Nickel Plating", "Chrome Plating", "Zinc Plating", "Copper Plating"].map((service) => (
@@ -52,12 +50,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
+          {/* Contact - Full width on mobile */}
+          <div className="col-span-2 md:col-span-1">
             <h3 className="font-semibold text-foreground mb-4">Contact</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
-                <Mail className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                <Mail className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                 <a
                   href="mailto:info@lanoraelectroplaters.com"
                   className="text-muted-foreground hover:text-accent transition-colors text-sm"
@@ -66,7 +64,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                <Phone className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                 <a
                   href="tel:+919876543210"
                   className="text-muted-foreground hover:text-accent transition-colors text-sm"
@@ -75,7 +73,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                 <span className="text-muted-foreground text-sm">Industrial Area, Chennai, India</span>
               </li>
             </ul>
@@ -84,7 +82,7 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-muted-foreground text-sm">© 2025 Lanora Electroplaters. All rights reserved.</p>
+          <p className="text-muted-foreground text-sm">© 2025 Lanora Electroplaters - Abhishek Anand.</p>
           <div className="flex gap-6 mt-4 sm:mt-0">
             <a href="#" className="text-muted-foreground hover:text-accent transition-colors text-sm">
               Privacy Policy

@@ -85,12 +85,21 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Smooth theme transitions for all color-based properties */
+  *,
+  *::before,
+  *::after {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling - disabled for instant scroll to top on navigation */
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 }
 

@@ -18,7 +18,7 @@ export function StaggerContainer({ children, className = "", staggerDelay = 0.1 
       opacity: 1,
       transition: {
         staggerChildren: staggerDelay,
-        delayChildren: 0.2,
+        delayChildren: 0,
       },
     },
   }
@@ -28,7 +28,7 @@ export function StaggerContainer({ children, className = "", staggerDelay = 0.1 
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 },
+      transition: { duration: 0.4 },
     },
   }
 
@@ -38,7 +38,7 @@ export function StaggerContainer({ children, className = "", staggerDelay = 0.1 
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, margin: "-50px" }}
     >
       {React.Children.map(children, (child) => (
         <motion.div variants={itemVariants}>{child}</motion.div>

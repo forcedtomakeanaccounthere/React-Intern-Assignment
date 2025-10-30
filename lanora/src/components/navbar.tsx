@@ -23,14 +23,19 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center group">
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
-              className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center text-white font-bold text-lg"
+              className="w-13 h-10 bg-accent-foreground rounded-lg flex items-center justify-center text-white font-bold text-lg"
             >
-              L
+              <img src="/lanora.png" alt="Lanora Logo" className="w-7 h-8" />
             </motion.div>
-            <span className="font-bold text-lg hidden sm:inline text-foreground">Lanora</span>
+            {/* <span className="font-bold text-lg hidden sm:inline text-foreground">Lanora</span> */}
+            <img 
+              src={theme === "dark" ? "/lanora_text_dark.png" : "/lanora_text.png"} 
+              alt="Lanora Logo" 
+              className="w-12 h-4 z-10 text-accent-foreground" 
+            />
           </Link>
 
           {/* Desktop Navigation */}

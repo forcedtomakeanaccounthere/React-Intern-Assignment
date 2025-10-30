@@ -14,14 +14,14 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center bg-background pt-20 pb-20">
         {/* Background shapes with animation */}
         <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-          className="absolute top-20 right-10 w-72 h-72 border-2 border-accent opacity-10 rounded-full"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+          className="absolute top-8 right-8 w-60 h-60 border-2 border-accent opacity-40 rounded-full"
         />
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 30, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-          className="absolute bottom-20 left-10 w-96 h-96 border-2 border-accent opacity-5 rounded-lg"
+          className="absolute top-20 left-15 w-76 h-76 border-2 border-accent opacity-18 rounded-r-3xl"
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -59,7 +59,7 @@ export default function Home() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href="/services"
-                    className="inline-flex items-center justify-center gap-2 border-2 border-accent text-accent px-8 py-3 rounded-lg font-semibold hover:bg-accent hover:text-accent-foreground transition-colors"
+                    className="inline-flex items-center justify-center gap-2 border-2 border-accent text-accent px-8 py-2.5 font-semibold hover:bg-accent hover:text-accent-foreground transition-colors"
                   >
                     Explore Services
                   </Link>
@@ -78,7 +78,7 @@ export default function Home() {
                 <motion.img
                   src="/industrial-electroplating-facility.jpg"
                   alt="Electroplating facility"
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-100 object-cover rounded-lg"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 />
@@ -91,7 +91,12 @@ export default function Home() {
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
-                  className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent opacity-10 rounded-lg"
+                  className="absolute -bottom-7 -right-6 w-32 h-32 bg-accent opacity-10 rounded-lg"
+                />
+                <motion.div
+                  animate={{ y: [0, -20, 0] }}
+                  transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
+                  className="absolute -bottom-12 -right-9 w-22 h-22 rotate-12 bg-accent opacity-20 -z-10 rounded-lg"
                 />
               </div>
             </motion.div>
@@ -105,8 +110,8 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, margin: "-100px" }}
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-foreground mb-4">
@@ -133,8 +138,8 @@ export default function Home() {
                 description: "Cost-effective zinc coating for excellent corrosion protection.",
               },
             ].map((service, index) => (
-              <HoverCard key={index} className="bg-background p-8 rounded-lg border border-border group">
-                <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <HoverCard key={index} className="bg-background p-8 border border-border group">
+                <div className="w-12 h-12 bg-accent rounded-[50%] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <service.icon className="w-6 h-6 text-accent-foreground" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">{service.title}</h3>
@@ -151,8 +156,8 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <h2 className="text-4xl font-bold text-foreground mb-6">Ready to Transform Your Components?</h2>
             <p className="text-lg text-muted-foreground mb-8">

@@ -53,8 +53,7 @@ export default function Contact() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-96 flex items-center justify-center bg-card pt-20 pb-20">
-        <div className="absolute top-20 right-10 w-72 h-72 border-2 border-accent opacity-10 rounded-full" />
+      <section className="relative max-h-26 flex items-center justify-center bg-card pt-20 pb-20 overflow-hidden">
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -81,8 +80,8 @@ export default function Contact() {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: false, amount: 0.2 }}
             >
               <h2 className="text-3xl font-bold text-foreground mb-8">Contact Information</h2>
 
@@ -117,8 +116,8 @@ export default function Contact() {
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    viewport={{ once: false, amount: 0.3 }}
                     className="flex gap-4"
                   >
                     <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center flex-shrink-0">
@@ -143,8 +142,8 @@ export default function Contact() {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: false, amount: 0.2 }}
               className="lg:col-span-2"
             >
               <div className="bg-card p-8 rounded-lg border border-border">

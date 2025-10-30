@@ -54,8 +54,9 @@ export default function Clients() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-96 flex items-center justify-center bg-card pt-20 pb-20">
-        <div className="absolute top-20 right-10 w-72 h-72 border-2 border-accent opacity-10 rounded-full" />
+      <section className="relative max-h-26 flex items-center justify-center bg-card pt-20 pb-20 overflow-hidden">
+        <div className="absolute top-27 right-100 w-22 h-22 border-2 border-accent opacity-20 rounded-full" />
+        <div className="absolute top-12 right-99 w-48 h-48 border-2 border-accent opacity-20 rounded-full" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div

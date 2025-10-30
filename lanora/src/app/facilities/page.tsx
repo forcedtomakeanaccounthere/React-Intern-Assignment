@@ -8,8 +8,9 @@ export default function Facilities() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-96 flex items-center justify-center bg-card pt-20 pb-20">
-        <div className="absolute top-20 right-10 w-72 h-72 border-2 border-accent opacity-10 rounded-full" />
+      <section className="relative max-h-26 flex items-center justify-center bg-card pt-20 pb-20 overflow-hidden">
+        <div className="absolute top-27 right-80 w-22 h-22 border-2 border-accent opacity-20 rounded-full" />
+        <div className="absolute top-15 right-80 w-42 h-42 border-2 border-accent opacity-20 rounded-full" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -34,8 +35,8 @@ export default function Facilities() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, margin: "-100px" }}
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-foreground mb-4">
@@ -49,8 +50,8 @@ export default function Facilities() {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true, margin: "-100px" }}
               className="relative h-96"
             >
               <img
@@ -66,8 +67,8 @@ export default function Facilities() {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true, margin: "-100px" }}
             >
               <h3 className="text-3xl font-bold text-foreground mb-6">Cutting-Edge Equipment</h3>
               <div className="space-y-4">
@@ -83,8 +84,8 @@ export default function Facilities() {
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    viewport={{ once: true, margin: "-50px" }}
                     className="flex items-start gap-3"
                   >
                     <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
@@ -107,8 +108,8 @@ export default function Facilities() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={{ once: true, margin: "-50px" }}
                 className="bg-card p-8 rounded-lg border border-border text-center hover:border-accent transition-colors"
               >
                 <item.icon className="w-8 h-8 text-accent mx-auto mb-4" />
@@ -126,8 +127,8 @@ export default function Facilities() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, margin: "-100px" }}
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-foreground mb-4">
@@ -147,8 +148,8 @@ export default function Facilities() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={{ once: true, margin: "-50px" }}
                 className="relative"
               >
                 <div className="bg-background p-8 rounded-lg border border-border hover:border-accent transition-colors">
@@ -159,7 +160,7 @@ export default function Facilities() {
                   <p className="text-muted-foreground">{item.description}</p>
                 </div>
                 {index < 3 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-1 bg-accent transform -translate-y-1/2" />
+                  <div className="hidden lg:block absolute top-1/2 -right-6 w-6.5 h-1 bg-accent transform -translate-y-1/2" />
                 )}
               </motion.div>
             ))}
@@ -175,8 +176,8 @@ export default function Facilities() {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true, margin: "-100px" }}
             >
               <h3 className="text-3xl font-bold text-foreground mb-6">
                 Automation & <span className="text-accent">Precision</span>
@@ -204,17 +205,18 @@ export default function Facilities() {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true, margin: "-100px" }}
               className="relative h-96"
             >
+              <div className="absolute -top-6 -left-6 w-24 h-24 border-2 border-accent opacity-20 rounded-lg z-0" />
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent opacity-10 rounded-lg z-0" />
               <img
                 src="/automated-plating-system.jpg"
                 alt="Automated system"
-                className="w-full h-full object-cover rounded-lg"
+                className="relative w-full h-full object-cover rounded-lg z-10"
               />
-              <div className="absolute inset-0 border-4 border-accent rounded-lg" />
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent opacity-10 rounded-lg" />
+              <div className="absolute inset-0 border-4 border-accent rounded-lg z-20" />
             </motion.div>
           </div>
         </div>
