@@ -61,9 +61,8 @@ export default function Facilities() {
               <img
                 src="/industrial-plating-equipment.jpg"
                 alt="Plating equipment"
-                className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 border-4 border-accent "
               />
-              <div className="absolute inset-0 border-4 border-accent rounded-lg" />
               <div className="absolute -top-6 -left-6 w-24 h-24 border-2 border-accent opacity-20 rounded-lg" />
             </motion.div>
 
@@ -219,9 +218,8 @@ export default function Facilities() {
               <img
                 src="/automated-plating-system.jpg"
                 alt="Automated system"
-                className="relative w-full h-full object-cover rounded-lg z-10 group-hover:scale-105 transition-transform duration-300"
+                className="relative w-full h-full object-cover rounded-lg z-10 group-hover:scale-105 transition-transform duration-300 border-4 border-accent"
               />
-              <div className="absolute inset-0 border-4 border-accent rounded-lg z-20" />
             </motion.div>
           </div>
         </div>
