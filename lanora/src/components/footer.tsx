@@ -57,24 +57,24 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                 <a
-                  href="mailto:info@lanoraelectroplaters.com"
+                  href="mailto:abhishekanandvii@gmail.com"
                   className="text-muted-foreground hover:text-accent transition-colors text-sm"
                 >
-                  info@lanoraelectroplaters.com
+                  abhishekanandvii@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+917386811239"
                   className="text-muted-foreground hover:text-accent transition-colors text-sm"
                 >
-                  +91 98765 43210
+                  +91 7386811239
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-accent mt-0.5 shrink-0" />
-                <span className="text-muted-foreground text-sm">Industrial Area, Chennai, India</span>
+                <span className="text-muted-foreground text-sm">IIIT-Sri City, Chittoor, Andhra Pradesh, India</span>
               </li>
             </ul>
           </div>

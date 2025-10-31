@@ -3,8 +3,11 @@
 import { motion } from "framer-motion"
 import { CheckCircle } from "lucide-react"
 import { RedLineAccent } from "../../components/abstract-shapes"
+import { PortfolioRedirectModal } from "../../components/portfolio-redirect-modal"
+import { useState } from "react"
 
 export default function About() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
@@ -39,14 +42,14 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="relative h-96"
+              className="relative h-96 cursor-pointer group"
+              onClick={() => setIsModalOpen(true)}
             >
               <img
                 src="/company-team-meeting.jpg"
                 alt="Lanora team"
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg group-hover:scale-102 transition-transform duration-300 border-4 border-accent rounded-lg"
               />
-              <div className="absolute inset-0 border-4 border-accent rounded-lg" />
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent opacity-10 rounded-lg" />
             </motion.div>
 
@@ -138,7 +141,8 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true, margin: "-50px" }}
-                className="bg-background p-8 rounded-lg border border-border text-center hover:border-accent transition-colors group"
+                className="bg-background p-8 rounded-lg border border-border text-center hover:border-accent transition-colors group cursor-pointer"
+                onClick={() => setIsModalOpen(true)}
               >
                 <div className="relative w-16 h-16 mx-auto mb-4">
                   {/* Tilted red box background */}
@@ -213,7 +217,8 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true, margin: "-50px" }}
-                className="bg-card p-8 rounded-lg border border-border hover:border-accent transition-colors group"
+                className="bg-card p-8 rounded-lg border border-border hover:border-accent transition-colors group cursor-pointer"
+                onClick={() => setIsModalOpen(true)}
               >
                 <div className="relative w-20 h-20 mb-4">
                   {/* Base sun image - scales and rotates on hover */}
@@ -238,6 +243,9 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* Portfolio Redirect Modal */}
+      <PortfolioRedirectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }

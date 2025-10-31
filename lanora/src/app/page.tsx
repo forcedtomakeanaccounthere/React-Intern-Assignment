@@ -6,8 +6,11 @@ import { ArrowRight, Zap, Shield, Cog } from "lucide-react"
 import { RedLineAccent } from "../components/abstract-shapes"
 import { HoverCard } from "../components/hover-card"
 import { StaggerContainer } from "../components/stagger-container"
+import { PortfolioRedirectModal } from "../components/portfolio-redirect-modal"
+import { useState } from "react"
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
@@ -72,15 +75,14 @@ export default function Home() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative h-96 lg:h-full min-h-96"
+              className="relative h-96 lg:h-full min-h-96 cursor-pointer group"
+              onClick={() => setIsModalOpen(true)}
             >
               <div className="relative w-full h-full">
                 <motion.img
                   src="/industrial-electroplating-facility.jpg"
                   alt="Electroplating facility"
-                  className="w-full h-100 object-cover rounded-lg"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
+                  className="w-full h-100 object-cover rounded-lg transition-transform duration-300"
                 />
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -174,6 +176,9 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Portfolio Redirect Modal */}
+      <PortfolioRedirectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }

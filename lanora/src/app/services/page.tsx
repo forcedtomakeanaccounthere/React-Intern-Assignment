@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion"
 import { RedLineAccent } from "../../components/abstract-shapes"
+import { PortfolioRedirectModal } from "../../components/portfolio-redirect-modal"
+import { useState } from "react"
 
 export default function Services() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const services = [
     {
       icon: "https://advancedplatingtech.com/wp-content/uploads/2017/12/Untitled-design-1.png",
@@ -97,7 +100,8 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true, margin: "-50px" }}
-                className="bg-card p-8 rounded-lg border border-border hover:border-accent transition-all hover:shadow-lg group"
+                className="bg-card p-8 rounded-lg border border-border hover:border-accent transition-all hover:shadow-lg group cursor-pointer"
+                onClick={() => setIsModalOpen(true)}
               >
                 <div className="relative w-20 h-20 mb-6">
                   {/* Tilted red box background */}
@@ -106,7 +110,7 @@ export default function Services() {
                   <img 
                     src={service.icon} 
                     alt={service.title}
-                    className="relative w-19 h-19 object-cover rounded-lg z-10 group-hover:scale-110 transition-transform duration-300" 
+                    className="relative w-19 h-19 object-cover rounded-lg z-10 group-hover:scale-110 transition-transform duration-300 border-accent border-2" 
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">{service.title}</h3>
@@ -198,6 +202,9 @@ export default function Services() {
           </div>
         </div>
       </section>
+
+      {/* Portfolio Redirect Modal */}
+      <PortfolioRedirectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }

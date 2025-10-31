@@ -3,8 +3,11 @@
 import { motion } from "framer-motion"
 import { Zap, Droplets, Gauge, Shield } from "lucide-react"
 import { RedLineAccent } from "../../components/abstract-shapes"
+import { PortfolioRedirectModal } from "../../components/portfolio-redirect-modal"
+import { useState } from "react"
 
 export default function Facilities() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
@@ -52,14 +55,14 @@ export default function Facilities() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="relative h-96"
+              className="relative h-96 cursor-pointer group"
+              onClick={() => setIsModalOpen(true)}
             >
               <img
                 src="/industrial-plating-equipment.jpg"
                 alt="Plating equipment"
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 border-4 border-accent rounded-lg"
               />
-              <div className="absolute inset-0 border-4 border-accent rounded-lg" />
               <div className="absolute -top-6 -left-6 w-24 h-24 border-2 border-accent opacity-20 rounded-lg" />
             </motion.div>
 
@@ -207,20 +210,23 @@ export default function Facilities() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="relative h-96"
+              className="relative h-96 cursor-pointer group"
+              onClick={() => setIsModalOpen(true)}
             >
               <div className="absolute -top-6 -left-6 w-24 h-24 border-2 border-accent opacity-20 rounded-lg z-0" />
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent opacity-10 rounded-lg z-0" />
               <img
                 src="/automated-plating-system.jpg"
                 alt="Automated system"
-                className="relative w-full h-full object-cover rounded-lg z-10"
+                className="relative w-full h-full object-cover rounded-lg z-10 group-hover:scale-105 transition-transform duration-300 border-4 border-accent rounded-lg z-20"
               />
-              <div className="absolute inset-0 border-4 border-accent rounded-lg z-20" />
             </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Portfolio Redirect Modal */}
+      <PortfolioRedirectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }

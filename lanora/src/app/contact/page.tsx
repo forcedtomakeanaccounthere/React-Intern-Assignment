@@ -90,19 +90,19 @@ export default function Contact() {
                   {
                     icon: Mail,
                     title: "Email",
-                    content: "info@lanoraelectroplaters.com",
-                    href: "mailto:info@lanoraelectroplaters.com",
+                    content: "abhishekanandvii@gmail.com",
+                    href: "mailto:abhishekanandvii@gmail.com",
                   },
                   {
                     icon: Phone,
                     title: "Phone",
-                    content: "+91 98765 43210",
-                    href: "tel:+919876543210",
+                    content: "+91 7386811239",
+                    href: "tel:+917386811239",
                   },
                   {
                     icon: MapPin,
                     title: "Address",
-                    content: "Industrial Area, Chennai, Tamil Nadu 600001, India",
+                    content: "IIIT-Sri City, Chittoor, Andhra Pradesh, India",
                     href: "#",
                   },
                   {
