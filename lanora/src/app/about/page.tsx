@@ -48,8 +48,9 @@ export default function About() {
               <img
                 src="/company-team-meeting.jpg"
                 alt="Lanora team"
-                className="w-full h-full object-cover rounded-lg group-hover:scale-102 transition-transform duration-300 border-4 border-accent rounded-lg"
+                className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
               />
+              <div className="absolute inset-0 border-4 border-accent rounded-lg" />
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent opacity-10 rounded-lg" />
             </motion.div>
 
