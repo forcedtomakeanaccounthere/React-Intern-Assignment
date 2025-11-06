@@ -1,6 +1,6 @@
 [build]
-  base = "artwork-table"
+  base = "SlotSwapper/frontend"
   command = "npm install --legacy-peer-deps && npm run build"
-  # Artwork-table is a Vite / React app — its build output is `dist`.
+  # SlotSwapper/frontend is a Vite / React app — its build output is `dist`.
   # Since `base` is set to the subfolder, publish should be the folder name inside that base.
   publish = "dist"
