@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # MongoDB Service (for local development)
+  mongodb:
+    image: mongo:7.0
+    container_name: slotswapper-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: slotswapper
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - slotswapper-network
+
+  # Backend Service
+  backend:
+    # OPTION 1: Build from local Dockerfile (for development)
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    
+    # OPTION 2: Use pre-built image from Docker Hub (for sharing)
+    # Uncomment the line below and replace YOUR_DOCKERHUB_USERNAME with your actual username
+    # image: abhishekanandvii/slotswapper-backend:latest
+    
+    container_name: slotswapper-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongodb:27017/slotswapper
+      - JWT_SECRET=your_jwt_secret_key_here_change_in_production
+      - FRONTEND_URL=http://localhost:3000
+    depends_on:
+      - mongodb
+    networks:
+      - slotswapper-network
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  # Frontend Service
+  frontend:
+    # OPTION 1: Build from local Dockerfile (for development)
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    
+    # OPTION 2: Use pre-built image from Docker Hub (for sharing)
+    # Uncomment the line below and replace YOUR_DOCKERHUB_USERNAME with your actual username
+    # image: abhishekanandvii/slotswapper-frontend:latest
+    
+    container_name: slotswapper-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URL=http://localhost:5000
+    depends_on:
+      - backend
+    networks:
+      - slotswapper-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  slotswapper-network:
+    driver: bridge

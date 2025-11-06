@@ -1,0 +1,233 @@
+{
+  "info": {
+    "name": "SlotSwapper API",
+    "description": "API collection for SlotSwapper - Time Slot Exchange Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "Get My Events",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {
+              "raw": "{{baseUrl}}/events",
+              "host": ["{{baseUrl}}"],
+              "path": ["events"]
+            }
+          }
+        },
+        {
+          "name": "Create Event",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{token}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Team Meeting\",\n  \"startTime\": \"2025-11-10T10:00:00Z\",\n  \"endTime\": \"2025-11-10T11:00:00Z\",\n  \"status\": \"SWAPPABLE\",\n  \"recurrence\": {\n    \"type\": \"once\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/events",
+              "host": ["{{baseUrl}}"],
+              "path": ["events"]
+            }
+          }
+        },
+        {
+          "name": "Update Event",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{token}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Meeting\",\n  \"status\": \"BUSY\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/events/:eventId",
+              "host": ["{{baseUrl}}"],
+              "path": ["events", ":eventId"]
+            }
+          }
+        },
+        {
+          "name": "Delete Event",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {
+              "raw": "{{baseUrl}}/events/:eventId",
+              "host": ["{{baseUrl}}"],
+              "path": ["events", ":eventId"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Swaps",
+      "item": [
+        {
+          "name": "Get Swappable Slots",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {
+              "raw": "{{baseUrl}}/swappable-slots",
+              "host": ["{{baseUrl}}"],
+              "path": ["swappable-slots"]
+            }
+          }
+        },
+        {
+          "name": "Create Swap Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{token}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mySlotId\": \"event_id_1\",\n  \"theirSlotId\": \"event_id_2\",\n  \"durationPreference\": \"keep_mine\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/swap-request",
+              "host": ["{{baseUrl}}"],
+              "path": ["swap-request"]
+            }
+          }
+        },
+        {
+          "name": "Accept Swap Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{token}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"acceptance\": true,\n  \"selectedTitle\": \"Merged Meeting\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/swap-response/:requestId",
+              "host": ["{{baseUrl}}"],
+              "path": ["swap-response", ":requestId"]
+            }
+          }
+        },
+        {
+          "name": "Reject Swap Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{token}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"acceptance\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/swap-response/:requestId",
+              "host": ["{{baseUrl}}"],
+              "path": ["swap-response", ":requestId"]
+            }
+          }
+        },
+        {
+          "name": "Get Incoming Requests",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {
+              "raw": "{{baseUrl}}/swaps/incoming",
+              "host": ["{{baseUrl}}"],
+              "path": ["swaps", "incoming"]
+            }
+          }
+        },
+        {
+          "name": "Get Outgoing Requests",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {
+              "raw": "{{baseUrl}}/swaps/outgoing",
+              "host": ["{{baseUrl}}"],
+              "path": ["swaps", "outgoing"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Swap Request",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {
+              "raw": "{{baseUrl}}/swaps/cancel/:requestId",
+              "host": ["{{baseUrl}}"],
+              "path": ["swaps", "cancel", ":requestId"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
