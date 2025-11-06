@@ -1,7 +1,6 @@
 [build]
   base = "artwork-table"
   command = "npm install --legacy-peer-deps && npm run build"
-  publish = ".next"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  # Artwork-table is a Vite / React app — its build output is `dist`.
+  # Since `base` is set to the subfolder, publish should be the folder name inside that base.
+  publish = "dist"
