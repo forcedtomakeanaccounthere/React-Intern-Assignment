@@ -1,6 +1,9 @@
 [build]
-  base = "lanora/frontend"
+  # Deploy the Next.js `lanora` app (root folder `lanora`).
+  base = "lanora"
   command = "npm install --legacy-peer-deps && npm run build"
-  # SlotSwapper/frontend is a Vite / React app — its build output is `dist`.
-  # Since `base` is set to the subfolder, publish should be the folder name inside that base.
-  publish = "dist"
+  # Next.js build output
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
