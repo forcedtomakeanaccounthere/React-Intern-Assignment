@@ -24,8 +24,8 @@ Go to your Render dashboard for `slotswapper-pchn`:
 **Set these Environment Variables:**
 ```bash
 FRONTEND_URL=https://slotswapper-abhishek.netlify.app
-MONGODB_URI=mongodb+srv://abhishekanandvii_db_user:EukUasZ534qMK48F@cluster0.qanwsfx.mongodb.net/slotswapper?retryWrites=true&w=majority&appName=Cluster0
-JWT_SECRET=slotswapper_production_jwt_secret_key_2025_change_this
+MONGODB_URI=
+JWT_SECRET=
 NODE_ENV=production
 PORT=5000
 ```
