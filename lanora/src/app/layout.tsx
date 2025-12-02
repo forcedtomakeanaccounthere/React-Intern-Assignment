@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { ThemeProvider } from "../components/theme-provider"
 import { Navbar } from "../components/navbar"
-import { Footer } from "../components/footer"
+// import { Footer } from "../components/footer"
 import { ScrollToTop } from "../components/scroll-to-top"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -30,7 +30,7 @@ export default function RootLayout({
           <ScrollToTop />
           <Navbar />
           <main className="min-h-screen">{children}</main>
-          <Footer />
+          {/* <Footer /> */}
         </ThemeProvider>
         <Analytics />
       </body>
